@@ -178,6 +178,9 @@ def multiplicacion(x, y):
 
 
 def division(x, y,n=100):
+    cero=([0,"+"],[]);
+    if mayorabs(y,cero)==cero: raise ZeroDivisionError
+    if mayorabs(x,cero)==cero: return cero
     vx=int(x[0][-1]+"1")  ; vy=int(y[0][-1]+"1")  
     vf=vx*vy
     if vf==1: vf="+"
@@ -189,7 +192,7 @@ def division(x, y,n=100):
     dec0=dy-dx  ;   ly=len(yr) ; cociente=[]
     x=[x+["+"],[]]  ;    r=x ;    y=[yr+["+"],[]]; 
     from numpy import asarray as np
-    yr=np(yr); diez=([0,1,"+"],[]) ; cero=([0,"+"],[]);   r1=1 ; j=0
+    yr=np(yr); diez=([0,1,"+"],[]) ; r1=1 ; j=0
     while len(cociente)< n and not comparacion(x,cero):
         if x!=mayorabs(y,x) and r1==0: 
             x=list(x); x[0]=[0]+x[0]; r=x; r1=1
@@ -231,8 +234,7 @@ def division(x, y,n=100):
     com=dec0+j; 
     if com >= 0:e=cociente[:com];e.reverse(); cociente=e+[str(vf)[0]],cociente[com:]
     else: cociente=[0]+ [str(vf)[0]],[0]*abs(com)+cociente
-    resultado= cociente
-    return resultado
+    return cociente
 
 
 def comparacion(x, y):
